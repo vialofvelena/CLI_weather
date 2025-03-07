@@ -52,9 +52,10 @@ if command == 'current':
     weather_data = get_weather(city)
     if weather_data:
         temp_c = weather_data['current_condition'][0]['temp_C']
+        temp_f = weather_data['current_condition'][0]['temp_F']
         condition = weather_data['current_condition'][0]['weatherDesc'][0]['value']
         emoji = get_weather_emoji(condition)
-        print(f"🌍 {city}: {temp_c}°C {emoji} ({condition})")
+        print(f"🌍 {city}: {temp_c}°C / {temp_f}°F {emoji} ({condition})")
     else:
         print("Error fetching weather")
 
@@ -71,12 +72,14 @@ elif command == 'forecast':
     if weather_data:
         for i in range(days):
             date = weather_data['weather'][i]['date']
-            max_temp = weather_data['weather'][i]['maxtempC']
-            min_temp = weather_data['weather'][i]['mintempC']
+            max_temp_c = weather_data['weather'][i]['maxtempC']
+            min_temp_c = weather_data['weather'][i]['mintempC']
+            max_temp_f = weather_data['weather'][i]['maxtempF']
+            min_temp_f = weather_data['weather'][i]['mintempF']
             condition = weather_data['weather'][i]['hourly'][0]['weatherDesc'][0]['value']
             emoji = get_weather_emoji(condition)
 
-            print(f"📅 {date}: {emoji} High: {max_temp}°C, Low: {min_temp}°C ({condition})")
+            print(f"📅 {date}: {emoji} High: {max_temp_c}°C / {max_temp_f}°F, Low: {min_temp_c}°C / {min_temp_f}°F ({condition})")
     else:
         print("Error fetching weather")
 
