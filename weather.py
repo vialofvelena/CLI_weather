@@ -1,6 +1,5 @@
 import requests
 import sys
-import random
 
 
 WEATHER_EMOJIS = {
